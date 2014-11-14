@@ -233,7 +233,7 @@ p2.days<-ggplot(data = act2.days,aes(x=date2,y=steps2,fill=Weekday))+
 p2.days
 ```
 
-```{r act3_weekdays&weekends),fig.width=13}
+```{r act3_weekdays&weekends,fig.width=13}
 act3<-act2.days
 names(act3)<-c("steps3","date3","interval3","Weekday")
 

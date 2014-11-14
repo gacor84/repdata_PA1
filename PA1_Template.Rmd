@@ -235,7 +235,7 @@ levels(act3$Weekday)
 head(act3)
 ```
 
-2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+> 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
 ```{r act3_ts.plot_weekdays&weekends}
 p3.monfry<-ggplot(data = act3[act3$Weekday=="weekday",],aes(x=interval3,y=steps3))+

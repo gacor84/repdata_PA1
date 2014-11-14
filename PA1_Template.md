@@ -714,13 +714,14 @@ sessionInfo()
 ## [8] methods   base     
 ## 
 ## other attached packages:
-## [1] gridExtra_0.9.1 scales_0.2.4    doBy_4.5-11     MASS_7.3-35    
-## [5] survival_2.37-7 ggplot2_1.0.0   knitr_1.7      
+## [1] gridExtra_0.9.1 doBy_4.5-11     MASS_7.3-35     survival_2.37-7
+## [5] ggplot2_1.0.0   knitr_1.7      
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] colorspace_1.2-4 digest_0.6.3     evaluate_0.5.5   formatR_1.0     
 ##  [5] gtable_0.1.2     htmltools_0.2.6  labeling_0.3     lattice_0.20-29 
 ##  [9] markdown_0.7.4   Matrix_1.1-4     mime_0.2         munsell_0.4.2   
 ## [13] plyr_1.8.1       proto_0.3-10     Rcpp_0.11.3      reshape2_1.4    
-## [17] rmarkdown_0.3.10 stringr_0.6.2    tools_3.1.2      yaml_2.1.13
+## [17] rmarkdown_0.3.10 scales_0.2.4     stringr_0.6.2    tools_3.1.2     
+## [21] yaml_2.1.13
 ```

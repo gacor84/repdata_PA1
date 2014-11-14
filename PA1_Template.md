@@ -372,9 +372,10 @@ mean.day
 ## 61 2012-11-30         NA
 ```
 
-```r
-# Since the days that have missing values have `NA`s for all intervals, we can't use the mean of that day, so I used the mean for the corresponding 5-minute interval
+Since the days that have missing values have `NA`s for all intervals, we can't use the mean of that day, so I used the mean for the corresponding 5-minute interval
 
+
+```r
 head(act); head(mean.I)
 ```
 
@@ -547,15 +548,13 @@ p2
 
 ![plot of chunk act2_histogram_mean&median](./figures/act2_histogram_mean&median-1.png) 
 
-```r
-# When there are misssing values, they are missing for an entire day, so the impact of imputing missing data is that: a) the mean and the median will be the same for all days with `NA`s; b) the median, which was 0 for all days without missing values, is now close to the mean for the days with missing values.
-```
+When there are misssing values, they are missing for an entire day, so the impact of imputing missing data is that: a) the mean and the median will be the same for all days with `NA`s; b) the median, which was 0 for all days without missing values, is now close to the mean for the days with missing values.
 
 ### Are there differences in activity patterns between weekdays and weekends?
 
-For this part the `weekdays()` function may be of some help here. Use the dataset with the filled-in missing values for this part.
+> For this part the `weekdays()` function may be of some help here. Use the dataset with the filled-in missing values for this part.
 
-1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
+> 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
 
 ```r
@@ -606,7 +605,6 @@ levels(act2.days$Weekday)
 
 ```r
 # re-ordering levels:
-
 act2.days$Weekday<-factor(act2.days$Weekday, 
                           levels = c("Monday","Tuesday","Wednesday","Thursday",
                                      "Friday","Saturday","Sunday"))
@@ -633,23 +631,6 @@ head(act2.days)
 ## 6   2.09 2012-10-01        25  Monday
 ```
 
-```r
-# histogram with weekdays coloured:
-
-library(scales) # to access date breaks/formatting functions
-
-p2.days<-ggplot(data = act2.days,aes(x=date2,y=steps2,fill=Weekday))+
-    geom_histogram(stat="summary",fun.y="mean")+
-    labs(title="Number of steps taken each day v.2 coloured",y="",x="")+
-    # date format on x axis:
-    scale_x_date(breaks = "days",labels = date_format("%a %d %b"))+
-    theme(axis.text.x=element_text(angle = 90, vjust = 0.5))
-
-p2.days
-```
-
-![plot of chunk act2.days_weekdays](./figures/act2.days_weekdays-1.png) 
-
 
 ```r
 act3<-act2.days
@@ -670,7 +651,6 @@ head(act3)
 
 ```r
 # grouping levels:
-
 levels(act3$Weekday)<-c("weekday","weekday","weekday","weekday","weekday",
                         "weekend","weekend")
 levels(act3$Weekday)
@@ -693,21 +673,6 @@ head(act3)
 ## 5   0.08 2012-10-01        20 weekday
 ## 6   2.09 2012-10-01        25 weekday
 ```
-
-```r
-# histogram with weekdays/weekends coloured:
-
-p3.wd<-ggplot(data = act3,aes(x=date3,y=steps3,fill=Weekday))+
-    geom_histogram(stat="summary",fun.y="mean")+
-    labs(title="Number of steps taken each day v.3 coloured",y="",x="")+
-    # date format on x axis:
-    scale_x_date(breaks = "days",labels = date_format("%a %d %b"))+
-    theme(axis.text.x=element_text(angle = 90, vjust = 0.5))
-
-p3.wd
-```
-
-![plot of chunk act3_weekdays&weekends](./figures/act3_weekdays&weekends-1.png) 
 
 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 

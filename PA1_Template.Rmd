@@ -4,6 +4,10 @@ author: "Gaëlle Cordier"
 date: "05/11/2014"
 output: html_document
 ---
+```{r figures_path}
+library(knitr)
+opts_chunk$set(fig.path = "./figures/") # Set figures path
+```
 
 ---
 
@@ -29,20 +33,20 @@ output: html_document
 
 #### Setting the working directory
 
-```{r working directory}
+```{r working_directory}
 act.dir<-"/home/gaelle/practicas/Coursera_Data_Science/Assessments/Reproducible_Research/"
 ```
 
 #### Loading the data
 
-```{r load data}
+```{r load_data}
 act.path<-file.path(act.dir, "activity.csv")
 act<-read.csv(act.path, header = T, sep=",")
 ```
 
 Data overview:
 
-```{r data overview}
+```{r data_overview}
 str(act)
 head(act)
 tail(act)
@@ -57,7 +61,7 @@ summary(act)
 
 #### 1. Make a histogram of the total number of steps taken each day
 
-```{r act histogram}
+```{r act_histogram}
 # install.packages("ggplot2")
 library(ggplot2)
 
@@ -71,7 +75,7 @@ p1
 
 #### 2. Calculate and report the **mean** and **median** total number of steps taken per day
 
-```{r act mean & median}
+```{r act_mean&median}
 # install.packages("doBy")
 library(doBy)
 
@@ -87,7 +91,7 @@ sum1
 
 #### 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
-```{r act ts.plot mean.I}
+```{r act_ts.plot_mean.I}
 ggplot(data = act,aes(x=interval,y=steps))+
     geom_line(stat="summary",fun.y="mean")+
     labs(title="Average number of steps taken by interval\n",
@@ -96,7 +100,7 @@ ggplot(data = act,aes(x=interval,y=steps))+
 
 #### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
-```{r act max mean.I}
+```{r act_max_mean.I}
 mean.I<-summaryBy(formula = steps~interval,data = na.omit(act),
                        FUN = function(x) { c(mean = round(mean(x),2)) })
 
@@ -118,7 +122,7 @@ mean.I[which(mean.I$steps.mean==max(mean.I$steps.mean)),]
 
 #### 1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
-```{r act sum NA}
+```{r act_sum_NA}
 sum(is.na(act))
 # all missing values are in steps column:
 sum(is.na(act$steps))
@@ -167,7 +171,7 @@ head(act2)
 
 #### 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
-```{r act2 histogram & mean/median}
+```{r act2_histogram_mean&median}
 sum2<-summaryBy(formula = steps2~date2,data = act2,
                 FUN = function(x) { c(mean = round(mean(x),2), median = median(x)) } )
 
@@ -189,7 +193,7 @@ For this part the `weekdays()` function may be of some help here. Use the datase
 
 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
-```{r act2.days (weekdays),fig.width=13}
+```{r act2.days_weekdays,fig.width=13}
 act2.days<-act2
 
 str(act2$date2)
@@ -229,7 +233,7 @@ p2.days<-ggplot(data = act2.days,aes(x=date2,y=steps2,fill=Weekday))+
 p2.days
 ```
 
-```{r act3 (weekdays/weekends),fig.width=13}
+```{r act3_weekdays&weekends),fig.width=13}
 act3<-act2.days
 names(act3)<-c("steps3","date3","interval3","Weekday")
 
@@ -257,7 +261,7 @@ p3.wd
 
 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
-```{r act3 ts.plot weekdays/weekends}
+```{r act3_ts.plot_weekdays&weekends}
 p3.monfry<-ggplot(data = act3[act3$Weekday=="weekday",],aes(x=interval3,y=steps3))+
     geom_line(stat="summary",fun.y="mean")+
     labs(title="Weekdays",y="Steps",x="Interval")
